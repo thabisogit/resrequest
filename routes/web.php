@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'ReservationController@index')->name('home');
+Route::resource('reservation','ReservationController');
+Route::resource('room','RoomController');
