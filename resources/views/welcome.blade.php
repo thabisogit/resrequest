@@ -61,7 +61,8 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-btn">
-                                    <button class="submit-btn">Check availability</button>
+                                    <button class="submit-btn" style="display: none">Book Now!</button>
+                                    <button type="button" class="btn btn-info" style="height: 50px;"></i>Check availability</button>
                                 </div>
                             </div>
                         </div>
