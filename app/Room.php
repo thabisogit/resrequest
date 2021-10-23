@@ -6,7 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    public function reservation(){
-        return $this->belongsTo(Resevertion::class);
+    protected $fillable = [
+        'name',
+        'hotel_id',
+    ];
+
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class, 'hotel_id');
+    }
+
+    public function room_type()
+    {
+        return $this->belongsTo(RoomType::class, 'room_type_id');
     }
 }

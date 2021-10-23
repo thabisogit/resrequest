@@ -14,7 +14,9 @@ class UpdateRoomsTable extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
+            $table->bigInteger('hotel_id')->unsigned();
             $table->bigInteger('room_type_id')->unsigned();
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->foreign('room_type_id')->references('id')->on('room_types');
 
         });

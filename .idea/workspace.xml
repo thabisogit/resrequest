@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c4da384-ee8b-40f4-b612-8af0638de44d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Hotel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Hotel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Room.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Room.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/RoomType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/RoomType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_22_125202_create_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_22_125202_create_rooms_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_10_22_155840_update_rooms_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_10_22_155840_update_rooms_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
