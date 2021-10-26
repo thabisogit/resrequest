@@ -15,11 +15,13 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('hotel_id')->unsigned();
             $table->bigInteger('room_id')->unsigned();
             $table->date('from_date');
             $table->date('to_date');
             $table->integer('number_of_rooms');
             $table->timestamps();
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->foreign('room_id')->references('id')->on('rooms');
         });
     }

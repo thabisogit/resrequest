@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -14,7 +15,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        dd(124455);
     }
 
     /**
@@ -81,5 +82,11 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         //
+    }
+
+    public function getRooms(Request $request){
+        $rooms = DB::table('rooms')
+            ->where('room_type_id',$request->room_type_id)->get(['id','name']);
+        return $rooms;
     }
 }

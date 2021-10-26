@@ -19,4 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'ReservationController@index')->name('home');
 Route::resource('reservation','ReservationController');
-Route::resource('room','RoomController');
+Route::post('room/getRooms','RoomController@getRooms');
+Route::post('room/getRooms','RoomController@getRooms');
+Route::post('reservation/store','ReservationController@store');
+Route::post('reservation/checkAvailability','ReservationController@checkAvailability');
+//Route::post('/room/getRooms','RoomController@getRooms');
+

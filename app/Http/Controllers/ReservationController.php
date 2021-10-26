@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Resevertion;
+use App\Hotel;
+use App\Reservation;
+use App\Room;
+use App\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -14,7 +18,10 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $hotels = Hotel::all();
+        $rooms = Room::all(); //sort by //TODO
+        $roomTypes = RoomType::all();
+        return view('welcome',compact('hotels','rooms','roomTypes'));
     }
 
     /**
@@ -35,16 +42,26 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd($request->number_of_children);
+        $request->validate(['hotel_id' => 'required','room_id' => 'required','from_date' => 'required','to_date' => 'required','number_of_rooms' => 'required','number_of_adults' => 'required','number_of_children' => 'required']);
+        Reservation::create([
+            'hotel_id'=>$request->hotel_id,
+            'room_id'=>$request->room_id,
+            'from_date'=>$request->from_date,
+            'to_date'=>$request->to_date,
+            'number_of_rooms'=>$request->number_of_rooms,
+            'number_of_adults'=>$request->number_of_adults,
+            'number_of_children'=>$request->number_of_children
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Resevertion  $resevertion
+     * @param  \App\Reservation  $resevertion
      * @return \Illuminate\Http\Response
      */
-    public function show(Resevertion $resevertion)
+    public function show(Reservation $resevertion)
     {
         //
     }
@@ -52,10 +69,10 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Resevertion  $resevertion
+     * @param  \App\Reservation  $resevertion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resevertion $resevertion)
+    public function edit(Reservation $resevertion)
     {
         //
     }
@@ -64,10 +81,10 @@ class ReservationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Resevertion  $resevertion
+     * @param  \App\Reservation  $resevertion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resevertion $resevertion)
+    public function update(Request $request, Reservation $resevertion)
     {
         //
     }
@@ -75,11 +92,24 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Resevertion  $resevertion
+     * @param  \App\Reservation  $resevertion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resevertion $resevertion)
+    public function destroy(Reservation $resevertion)
     {
         //
+    }
+
+
+    public function checkAvailability(Request $request){
+        $reservations = DB::select(
+            'select * from (SELECT *, '.$request->from_date.' as new_from_date,
+                  '.$request->to_date.' as new_to_date FROM `reservations`)
+                  mt WHERE mt.hotel_id = '.$request->hotel_id.'
+                  and mt.room_id = '.$request->room_id.'
+                  and mt.new_from_date
+                  BETWEEN mt.from_date AND mt.to_date');
+
+        return(empty($reservations) ? 0:1);
     }
 }
